@@ -8,7 +8,7 @@
 
 import React, {Component} from 'react';
 import {Platform, StyleSheet, Text, View} from 'react-native';
-import TabNavigator from './src/config/navigation'
+import AllStack from './src/config/navigation'
 const instructions = Platform.select({
   ios: 'Press Cmd+R to reload,\n' + 'Cmd+D or shake for dev menu',
   android:
@@ -21,7 +21,8 @@ export default class App extends Component {
   render() {
     console.disableYellowBox = true;
     return (
-    <TabNavigator/>
+  //  <View style={{marginTop:200}}><Text>44</Text></View>
+  <AllStack/>
     );
   }
 }
