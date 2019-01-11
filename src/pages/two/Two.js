@@ -1,4 +1,4 @@
-import {Component} from 'react'
+import React, {Component} from 'react'
 import {View,Text} from 'react-native'
 
 
@@ -12,4 +12,4 @@ class Two extends  Component{
         )
     }
 }
-export default Twone
+export default Two
