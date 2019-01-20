@@ -4,7 +4,8 @@ import Three from './three/Three'
 import Four from './four/Four'
 import Login from './login/Login'
 import Register  from './login/register'
+import Sign from './Sign'
 
 export  {
-    One,Two,Three,Four,Login,Register
+    One,Two,Three,Four,Login,Register,Sign
 }
