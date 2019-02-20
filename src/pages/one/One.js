@@ -62,11 +62,14 @@ class One extends  Component{
             }}>
             <Ionicons name={'ios-add'} size={30}/>
             </TouchableOpacity>
-              
-               <View style={ys.top_find}>
+              <TouchableOpacity onPress={()=>{
+              this.props.navigation.navigate('Detail')
+              }} style={ys.top_find} >
+               
                    <Ionicons name={'ios-search'} size={20} style={{marginLeft:'5%'}}/>
                    <Text style={{marginLeft:'5%',color:'#A9A9A9',}}>请输入搜索内容</Text>
-             </View> 
+   
+             </TouchableOpacity>
              <TouchableOpacity onPress={()=>{
 
              }}>

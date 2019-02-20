@@ -1,7 +1,7 @@
 import React from 'react';
 import { createBottomTabNavigator, createAppContainer,createStackNavigator } from 'react-navigation';
 
-import {One,Two,Three,Four,Login,Register,Sign} from '../pages/all'
+import {One,Two,Three,Four,Login,Register,Sign,Detail} from '../pages/all'
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -53,7 +53,8 @@ const BottomTab = createBottomTabNavigator({
     Four:{screen:Four},
     Login:{screen:Login},
     Register:{screen:Register},
-    Sign:{screen:Sign}
+    Sign:{screen:Sign},
+    Detail:{screen:Detail}
  })
   
   export default createAppContainer(AllStack);
