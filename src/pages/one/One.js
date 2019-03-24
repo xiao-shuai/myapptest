@@ -1,5 +1,6 @@
 import React, {Component} from 'react'
-import {View,Text,TouchableOpacity,Image,Dimensions,ScrollView,StyleSheet,FlatList} from 'react-native'
+import {View,Text,TouchableOpacity,Image
+    ,ScrollView,StyleSheet,ActivityIndicator} from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {inject,observer} from 'mobx-react'
 import {observable} from 'mobx'
@@ -15,6 +16,7 @@ class One extends  Component{
  constructor(props){
     super(props);
     this.state = {
+        isshow:true,
         ms:'这是描述描述没什么没事没事',
         data2:["http://h.hiphotos.baidu.com/image/pic/item/58ee3d6d55fbb2fbbc6b4796424a20a44723dcf6.jpg",
         "http://a.hiphotos.baidu.com/image/pic/item/728da9773912b31b38b68ca38b18367adbb4e166.jpg",
@@ -24,6 +26,7 @@ class One extends  Component{
     this.store=this.props.oneStore
     
  }
+   
  componentWillMount(){
      fetch('http://apis.juhe.cn/cook/category?key=74d4b33458ab0649914dab32390eaab4').then(res=>{
             return res.json()
@@ -31,13 +34,17 @@ class One extends  Component{
  
      )
      .then(res=>{
-         console.log("res.result",res.result)
+       
          this.store.data=res.result
          console.log("shuju",this.store.data)
+         this.setState({isshow:false})
+         
      }).catch(err=>{
          console.log("err",err)
      })
  }
+ 
+ 
  _renderItem ({item, index}) {
         
      return (
@@ -55,6 +62,13 @@ class One extends  Component{
         console.log("有数据吗？",data)
         return(
             <SafeAreaView>
+                {
+                    this.state.isshow?
+                    <View style={{justifyContent: 'center',height:Metrics.CH*.8}}>
+                    <ActivityIndicator size="large" color={Metrics.themeColor} />
+                    </View>
+                    :
+               
             <View style={ys.big} >
             <View style={ys.top}>
             <TouchableOpacity onPress={()=>{
@@ -73,7 +87,7 @@ class One extends  Component{
              <TouchableOpacity onPress={()=>{
 
              }}>
-             <Ionicons name={'ios-cart'} size={25} />
+             <Ionicons name={'ios-notifications-outline'} size={25} />
              </TouchableOpacity>
             
             </View>
@@ -106,8 +120,12 @@ class One extends  Component{
                </View>
               </View>
             {/*每日新菜  */}
-              <View style={{width:Metrics.CW*.95,marginLeft:'2.5%',
-              backgroundColor:'#FFEBCD',marginTop:10,borderRadius:8}}>
+              <View style={{width:Metrics.CW*.95,
+              marginLeft:'2.5%',
+             marginTop:10,borderRadius:8,
+             borderWidth:1,
+             borderColor:Metrics.themehui3,
+             }}>
                <View style={{flexDirection:'row',justifyContent:'space-between',padding:5,alignItems:'center'}}>
                 <Text style={{fontSize:16}}>每日新菜</Text>
                 <View style={{flexDirection:'row',justifyContent:'space-between'}}>
@@ -125,7 +143,7 @@ class One extends  Component{
                           return(
                               <TouchableOpacity onPress={()=>{
 
-                              }} style={{}}>
+                              }} style={{}} key={index}>
                               <View style={{width:Metrics.CW*.35,margin:10}}>
                               <Image source={{uri:item}} style={{width:'100%',height:100}}></Image>
                               <Text style={{marginTop:5,letterSpacing:1,marginBottom:3,}}>{this.state.ms.length>10?this.state.ms.substr(0,10)+'...':this.state.ms}</Text>
@@ -148,11 +166,15 @@ class One extends  Component{
                      <Divider style={{width:Metrics.CW*.2,backgroundColor:'#DAA520'}}/>
                  </View>
                     {/*  */}
-                 <View style={{width:Metrics.CW*.95,marginLeft:'2.5%',}}>
+                 <View style={{width:Metrics.CW*.95,marginLeft:'2.5%',}}  >
                     {
                         this.state.data2.map((item,index)=>{
                   return(
-                      <View style={{width:'100%',marginTop:10,backgroundColor:'#FFEBCD',borderRadius:8}}>
+                      <View style={{width:'100%',marginTop:10,
+                      borderRadius:8,
+                      borderColor:Metrics.themehui3,
+                      borderWidth:1,
+                      }} key={index}  >
                           <Text style={{fontSize:15,padding:8}}>这是标题</Text>
                           <Image source={{uri:item}} style={{width:'100%',height:200}}/>
                           <Text style={{fontSize:15,padding:8}}>这是底部内容</Text>
@@ -167,14 +189,15 @@ class One extends  Component{
               </ScrollView>
 
            
-            </View>
+            </View> 
+        }
             </SafeAreaView>
         )
     }
 }
 const ys=StyleSheet.create({
  big:{
-    width:"100%",height:"100%",backgroundColor:Metrics.themeColor
+    width:"100%",height:"100%",
     },
  top:{
     width:Metrics.CW*.95,height:Metrics.CH*.05,
@@ -188,7 +211,8 @@ top_find:{
   },
   zj_tab:{
     width:Metrics.CW*.9,marginLeft:'5%',
-    backgroundColor:'#FFEBCD',marginTop:20,flexDirection:'row',
+     borderWidth:1,borderColor:Metrics.themehui3,
+    marginTop:20,flexDirection:'row',
     justifyContent:'space-around',padding:15,borderRadius:8
   },
   zj_tab_con:{

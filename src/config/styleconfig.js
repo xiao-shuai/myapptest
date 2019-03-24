@@ -4,7 +4,8 @@ const { width, height } = Dimensions.get('window')
 export const Metrics = {
   CW: width < height ? width : height,
   CH: width < height ? height : width,
-  themeColor:'#FFFFE0',
+  themeColor:'#00BFFF',
   themehui:'#A9A9A9',
-  themehui2:'#808080'
+  themehui2:'#808080',
+  themehui3:'#DCDCDC',
 }
