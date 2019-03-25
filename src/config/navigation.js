@@ -1,7 +1,8 @@
 import React from 'react';
 import { createBottomTabNavigator, createAppContainer,createStackNavigator } from 'react-navigation';
 
-import {One,Two,Three,Four,Login,Register,Sign,Detail} from '../pages/all'
+import {One,Two,Three,Four,Login,Register,
+  Sign,Detail,Notice,NoticeSys,Edite,Lianxi} from '../pages/all'
 
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
@@ -10,7 +11,7 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 const BottomTab = createBottomTabNavigator({
     one: One,
     two: Two,
-    three:Three,
+    // three:Three,
     four:Four,
   },
   {  initialRouteName: 'one',
@@ -45,7 +46,8 @@ const BottomTab = createBottomTabNavigator({
     One:{
      screen:BottomTab,
      navigationOptions: ({ navigation }) => ({
-         header:null
+         header:null,
+         headerBackTitle:null,
        })
     }, 
     Two:{screen:Two},
@@ -54,7 +56,37 @@ const BottomTab = createBottomTabNavigator({
     Login:{screen:Login},
     Register:{screen:Register},
     Sign:{screen:Sign},
-    Detail:{screen:Detail}
+    Detail:{screen:Detail},
+    Notice:{
+      screen:Notice,
+     
+      navigationOptions:({
+        title:'我的消息',
+        headerBackTitle:null,
+      })
+    },
+    NoticeSys:{
+      screen:NoticeSys,
+     
+      navigationOptions:({
+        title:'消息详情',
+      })
+    },
+    Edite:{
+      screen:Edite,
+     
+      navigationOptions:({
+        title:'个人设置',
+      })
+    },
+    Lianxi:{
+      screen:Lianxi,
+     
+      navigationOptions:({
+        title:'联系我们',
+      })
+    },
+
  })
   
   export default createAppContainer(AllStack);

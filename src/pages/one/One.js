@@ -23,7 +23,6 @@ class One extends  Component{
         "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547396620181&di=3ce36cbdd2b6b6a13f7ee2f21ba8b06f&imgtype=0&src=http%3A%2F%2Fimage.xcar.com.cn%2Fattachments%2Fa%2Fday_140319%2F2014031916_1bd6ffb9d5553620f870beYW9d0Nxj0n.jpg"]
     };
 
-    this.store=this.props.oneStore
     
  }
    
@@ -35,8 +34,8 @@ class One extends  Component{
      )
      .then(res=>{
        
-         this.store.data=res.result
-         console.log("shuju",this.store.data)
+        //  this.store.data=res.result
+         console.log("shuju",res)
          this.setState({isshow:false})
          
      }).catch(err=>{
@@ -57,9 +56,6 @@ class One extends  Component{
 }
 
     render(){
-        
-        const{text,data}=this.store
-        console.log("有数据吗？",data)
         return(
             <SafeAreaView>
                 {
@@ -85,7 +81,7 @@ class One extends  Component{
    
              </TouchableOpacity>
              <TouchableOpacity onPress={()=>{
-
+              this.props.navigation.navigate('Notice')
              }}>
              <Ionicons name={'ios-notifications-outline'} size={25} />
              </TouchableOpacity>

@@ -6,7 +6,11 @@ import Login from './login/Login'
 import Register  from './login/register'
 import Sign from './Sign'
 import Detail from './Detail'
-
+import Notice from './Notice'
+import NoticeSys from './NoticeSys'
+import Edite from './Edite'
+import Lianxi from './Lianxi'
 export  {
-    One,Two,Three,Four,Login,Register,Sign,Detail
+    One,Two,Three,Four,Login,Register,Sign,
+    Detail,Notice,NoticeSys,Edite,Lianxi
 }

@@ -4,6 +4,9 @@ import { SafeAreaView } from 'react-navigation';
 import {Metrics} from '../../config/styleconfig'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import { Divider } from 'react-native-elements';
+import {inject,observer} from 'mobx-react'
+@inject(["oneStore"])
+@observer // 监听当前组件
 class Four extends  Component{
    constructor(props){
       super(props)
@@ -28,22 +31,26 @@ class Four extends  Component{
       {
           icon:'ios-notifications',
           text:'我的消息',
-          iconr:'ios-arrow-forward'
+          iconr:'ios-arrow-forward',
+          tiao:'Notice'
       },
       {
         icon:'ios-star-outline',
         text:'我的收藏',
-        iconr:'ios-arrow-forward'
+        iconr:'ios-arrow-forward',
+        tiao:''
     },
     {
         icon:'ios-heart-empty',
           text:'我的喜欢',
-          iconr:'ios-arrow-forward'
+          iconr:'ios-arrow-forward',
+          tiao:''
     },
     {
         icon:'ios-mail',
           text:'联系我们',
-          iconr:'ios-arrow-forward'
+          iconr:'ios-arrow-forward',
+         tiao:'Lianxi'
     },
   ]  
     
@@ -58,13 +65,13 @@ class Four extends  Component{
               <Text style={{fontSize:20,fontWeight:'500',color:Metrics.th}}>我的</Text>
               </View> 
               <ImageBackground style={{width:Metrics.CW,marginTop:5,
-                height:Metrics.CH*.25,}} source={require('../../img/mine_bg.jpeg')} >
+                height:Metrics.CH*.3,}} source={require('../../img/mine_bg.jpeg')} >
             <View style={{
                 width:Metrics.CW,
                 height:Metrics.CH*.25,
                 alignItems:'center',
                 justifyContent:'center',
-                // backgroundColor:'#F0F8FF',
+                // marginTop:Metrics.CH*.05
                 
                 }}>
                
@@ -76,37 +83,33 @@ class Four extends  Component{
                    }}>
                
               <View  style={{height:Metrics.CH*.15,}}>
+               <TouchableOpacity onPress={()=>{
 
-              <Image source={{uri:'http://img3.redocn.com/tupian/20150519/katongmeishituansucai_3916094.jpg'}} 
-            style={{width:80,height:80,borderRadius:40}}/>
-             <Text style={{marginTop:8,color:Metrics.themehui2}}>每个吃货都是有签名的介绍下自己吧！</Text>
+               }}>
+              <Image source={{uri:this.props.oneStore.tx}} 
+            style={{width:Metrics.CW*.2,height:Metrics.CW*.2,borderRadius:Metrics.CW*.1}}/>
+            </TouchableOpacity>
+             <Text style={{marginTop:8,color:'white'}}>{this.props.oneStore.qm.substring(0,10)+'..'}</Text>
               </View>
              
-            <View style={{height:Metrics.CH*.15,alignItems:'center',justifyContent:'space-around'}}>
-            <Text style={{fontSize:25,fontWeight:'500',color:Metrics.themehui2}}>美食家</Text>
-            <View style={{
-                width:Metrics.CW*.2,
-            height:Metrics.CW*.08,
-               alignItems:'center',
-                justifyContent:'center',borderRadius:15,
-                borderWidth:1,borderColor:Metrics.themehui2,marginTop:20
-                }}>
-            <Text style={{fontSize:16,letterSpacing:3,color:Metrics.themehui2,}}>编辑</Text>
-            </View>
+            <View style={{height:Metrics.CH*.15,alignItems:'center',justifyContent:'space-between'}}>
+            <Text style={{fontSize:25,fontWeight:'500',color:'white'}}>
+            {
+                this.props.oneStore.text.substring(0,3)+'..'
+                
+                }</Text>
+            <TouchableOpacity style={ys.bj} onPress={()=>{
+                this.props.navigation.navigate('Edite')
+            }}>
+            <Text style={{fontSize:16,letterSpacing:3,color:'white',}}>编辑</Text>
+            </TouchableOpacity>
             </View>
             
                 </View>
             
             </View>
             </ImageBackground>
-            <View style={{
-                width:Metrics.CW*.95,
-                marginLeft:'2.5%',height:80,
-                backgroundColor:Metrics.themehui3,
-                marginTop:-40,
-                flexDirection:'row',borderRadius:8,
-                opacity:.5,
-                justifyContent:'space-around',alignItems:'center'}}>
+            <View style={ys.some_option}>
 
              {
                 this.some_option.map((item,index)=>{
@@ -137,7 +140,7 @@ class Four extends  Component{
              return(
                  <View key={index}>
                  <TouchableOpacity onPress={()=>{
-
+                 this.props.navigation.navigate(item.tiao)
                  }} style={{flexDirection:'row',justifyContent:'space-between',marginTop:20}} >
              <View style={{flexDirection:'row',alignItems:'center'}}>
              <View style={{width:Metrics.CW*.08}}>
@@ -175,5 +178,24 @@ const ys=StyleSheet.create({
     flexDirection:'row',justifyContent:'space-between',
     borderTopLeftRadius:10,
     borderBottomLeftRadius:10,
+  },
+  bj:{
+    width:Metrics.CW*.2,
+    height:Metrics.CW*.08,
+       alignItems:'center',
+        justifyContent:'center',
+        borderRadius:15,
+        borderWidth:2,
+        borderColor:'white',
+        marginTop:20
+  },
+  some_option:{
+    width:Metrics.CW*.95,
+    marginLeft:'2.5%',height:80,
+    backgroundColor:Metrics.themehui3,
+    marginTop:-40,
+    flexDirection:'row',borderRadius:8,
+    opacity:.5,
+    justifyContent:'space-around',alignItems:'center'
   }
 })
