@@ -65,7 +65,7 @@ tabBarTextStyle={{fontSize:18}}
  
  >
 
-                <ScrollView tabLabel='美食IP' contentContainerStyle ={ys.big_s}>
+                <ScrollView tabLabel='Food' contentContainerStyle ={ys.big_s}>
 
                 {
                     this.testdata.map((item,index)=>{
@@ -88,7 +88,7 @@ tabBarTextStyle={{fontSize:18}}
                 }
 					</ScrollView>
  
-					<ScrollView tabLabel='健康IP' contentContainerStyle={ys.big_s}>
+					<ScrollView tabLabel='Health' contentContainerStyle={ys.big_s}>
                     {
                     this.testdata.map((item,index)=>{
            return(
@@ -110,7 +110,7 @@ tabBarTextStyle={{fontSize:18}}
                 }
 					</ScrollView>
  
-					<ScrollView tabLabel='亲子IP' contentContainerStyle={ys.big_s}>
+					<ScrollView tabLabel='Couple' contentContainerStyle={ys.big_s}>
                     {
                     this.testdata.map((item,index)=>{
            return(

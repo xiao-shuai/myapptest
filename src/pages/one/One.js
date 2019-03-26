@@ -21,8 +21,10 @@ class One extends  Component{
     
     this.state = {
         isshow:true,
+        data:[],
         ms:'这是描述描述没什么没事没事',
-        data2:["http://h.hiphotos.baidu.com/image/pic/item/58ee3d6d55fbb2fbbc6b4796424a20a44723dcf6.jpg",
+        data2:[
+        "http://h.hiphotos.baidu.com/image/pic/item/58ee3d6d55fbb2fbbc6b4796424a20a44723dcf6.jpg",
         "http://a.hiphotos.baidu.com/image/pic/item/728da9773912b31b38b68ca38b18367adbb4e166.jpg",
         "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547396620181&di=3ce36cbdd2b6b6a13f7ee2f21ba8b06f&imgtype=0&src=http%3A%2F%2Fimage.xcar.com.cn%2Fattachments%2Fa%2Fday_140319%2F2014031916_1bd6ffb9d5553620f870beYW9d0Nxj0n.jpg"]
     };
@@ -31,16 +33,17 @@ class One extends  Component{
  }
    
  componentWillMount(){
-     fetch('http://apis.juhe.cn/cook/category?key=74d4b33458ab0649914dab32390eaab4').then(res=>{
+     fetch('http://food.blitz.work:10040/v1/cookbooks/cores/').then(res=>{
             return res.json()
      }
  
      )
      .then(res=>{
-       
-        //  this.store.data=res.result
-         console.log("shuju",res)
-         this.setState({isshow:false})
+         console.log("shuju",res.results)
+         this.setState({
+             isshow:false,
+             data:res.results
+            })
          
      }).catch(err=>{
          console.log("err",err)
@@ -48,18 +51,34 @@ class One extends  Component{
  }
  
  
- _renderItem ({item, index}) {
+//  _renderItem ({item, index,props}) {
         
-     return (
-        <View style={{width:"100%",height:200}}>
-    
-        <Image source={{uri:item}} style={{width:'100%',height:'100%'}}></Image>
+//      return (
+//          <TouchableOpacity style={{width:"100%",height:200}} onPress={()=>{
+//            this.props.navigation.navigate('Detail')  
+//         //    navigaion.navigate('Search')
+          
+//          }}>
+//         <Image source={{uri:item.cover}} style={{width:'100%',height:'100%'}}></Image>
        
-        </View>
-    );
+//         </TouchableOpacity>
+//     );
+// }
+_renderItem=(props)=>{
+    return (
+        <TouchableOpacity style={{width:"100%",height:200}} onPress={()=>{
+         
+       //    navigaion.navigate('Search')
+         
+        }}>
+       <Image source={{uri:item.cover}} style={{width:'100%',height:'100%'}}></Image>
+      
+       </TouchableOpacity>
+   );
 }
 
     render(){
+        console.log('this.state.data---!',this.state.data)
         return(
             <SafeAreaView>
                 {
@@ -93,10 +112,22 @@ class One extends  Component{
             </View>
             <ScrollView style={{flex:1,}}>
            <Carousel layout={'default'} 
-           data={this.state.data2} 
-           renderItem={this._renderItem}
+           data={this.state.data} 
+           navigation={this.props.navigation} 
+           renderItem={(item,index)=>{
+            //    console.log('item---!',item)
+              return (
+                  <TouchableOpacity style={{width:"100%",height:200}} onPress={()=>{
+                      this.props.navigation.navigate("Detail",{info:item})
+                  }}>
+                      <Image source={{uri:item.item.cover}} style={{width:'100%',height:200}}></Image>
+                  </TouchableOpacity>
+              )
+           }     
+               }
            sliderWidth={Metrics.CW}
             itemWidth={Metrics.CW*.8}
+            // navigation={this.props.navigation} 
             loop={true}
               autoplay={true}
               

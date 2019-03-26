@@ -421,16 +421,9 @@ render(){
              <TouchableOpacity style={[ys.fm_v,{width:Metrics.CW*.28,height:Metrics.CW*.28,}]} onPress={()=>{
               //  this.choosePicker()
              }}>
-             {
-               this.state.CoverPhoto?
-               <Image source={{uri:this.state.fmimg}} style={{ 
-                 width:Metrics.CW*.28,
-                height:Metrics.CW*.28,
-                borderRadius:10,
-              }}/>
-               :
+             
                <Text style={{fontSize:15,color:Metrics.themehui2}}>Five at most</Text>
-             }
+             
 
              </TouchableOpacity>
             
