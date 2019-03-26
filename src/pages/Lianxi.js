@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View,Text,TouchableOpacity,Image,ScrollView,StyleSheet,TextInput} from 'react-native'
+import {View,Text,TouchableOpacity,Image,ScrollView,StyleSheet,ActivityIndicator} from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {inject,observer} from 'mobx-react'
 import {observable} from 'mobx'
@@ -13,39 +13,55 @@ class Lianxi extends Component {
     constructor(props){
       super(props)
       this.state={
-
+       isshow:true
       }
     }
+    componentWillMount(){
+     fetch('http://rap2api.taobao.org/app/mock/163155/userinfo').then(res=>{
+     return res.json()
+   } ).then(res=>{
+     this.setState({isshow:false})
+   }).catch(err=>{
+     console.log('err--!',err)
+   })
+    }
     render(){
+        if(this.state.isshow){
+            return (
+             <View style={{justifyContent: 'center',height:Metrics.CH*.8}}>
+             <ActivityIndicator size="large" color={Metrics.themeColor} />
+             </View>
+            )
+          }
         return(
             <SafeAreaView style={{flex:1,}}>
                 <ScrollView>
                     <View style={{width:Metrics.CW,height:Metrics.CH*.37,
                         justifyContent:'center',alignItems:'center',}}>
                         <Image source={require('../img/logo.png')} style={ys.img}/>
-                        <Text style={{fontSize:20,color:Metrics.themeColor,marginTop:10}}>我爱厨房</Text>
-                        <Text style={{fontSize:14,color:Metrics.themeColor,marginTop:10}}>版本V1.0.0</Text>
+                        <Text style={{fontSize:20,color:Metrics.themeColor,marginTop:10}}>LoveKitchen</Text>
+                        <Text style={{fontSize:14,color:Metrics.themeColor,marginTop:10}}>versionV1.0.0</Text>
                     </View>
             {/*  */}
             <Divider style={{backgroundColor:Metrics.themehui3,height:3}}/>
-            <View style={ys.xia_tan}>
+            {/* <View style={ys.xia_tan}>
             <Ionicons name={'ios-call'} size={Metrics.CW*.08} color={Metrics.themehui2}/>
-            <Text style={{fontSize:15,color:Metrics.themehui2,marginLeft:Metrics.CW*.06}}>服务客服: 4006-921-233 </Text>     
+            <Text style={{fontSize:15,color:Metrics.themehui2,marginLeft:Metrics.CW*.06}}>Customer service telephone: 4006-921-233 </Text>     
             </View>
-            <Divider style={{height:1,backgroundColor:Metrics.themehui3}}/>
+            <Divider style={{height:1,backgroundColor:Metrics.themehui3}}/> */}
 
 {/*  */}
 <View style={ys.xia_tan}>
             <Ionicons name={'ios-call'} size={Metrics.CW*.08} color={Metrics.themehui2}/>
-            <Text style={{fontSize:15,color:Metrics.themehui2,marginLeft:Metrics.CW*.06}}>招商电话: 4006-342-564 </Text>     
+            <Text style={{fontSize:15,color:Metrics.themehui2,marginLeft:Metrics.CW*.06}}>China merchants call: 4006-342-564 </Text>     
             </View>
             <Divider style={{height:1,backgroundColor:Metrics.themehui3}}/>
 {/*  */}
-<View style={ys.xia_tan}>
-            <Ionicons name={'ios-mail'} size={Metrics.CW*.08} color={Metrics.themehui2}/>
-            <Text style={{fontSize:15,color:Metrics.themehui2,marginLeft:Metrics.CW*.06}}>内容合作: wacf@meishi.cc </Text>     
+{/* <View style={ys.xia_tan}> */}
+            {/* <Ionicons name={'ios-mail'} size={Metrics.CW*.08} color={Metrics.themehui2}/>
+            <Text style={{fontSize:15,color:Metrics.themehui2,marginLeft:Metrics.CW*.06}}>Content of the cooperation: wacf@meishi.cc </Text>     
             </View>
-            <Divider style={{height:1,backgroundColor:Metrics.themehui3}}/>
+            <Divider style={{height:1,backgroundColor:Metrics.themehui3}}/> */}
             {/*  */}
             <View style={ys.xia_tan}>
             <Ionicons name={'ios-mail'} size={Metrics.CW*.08} color={Metrics.themehui2}/>

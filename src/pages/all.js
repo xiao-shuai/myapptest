@@ -10,7 +10,10 @@ import Notice from './Notice'
 import NoticeSys from './NoticeSys'
 import Edite from './Edite'
 import Lianxi from './Lianxi'
+import Search from './Search'
+import Fabu from './Fabu'
 export  {
     One,Two,Three,Four,Login,Register,Sign,
-    Detail,Notice,NoticeSys,Edite,Lianxi
+    Detail,Notice,NoticeSys,Edite,Lianxi,
+    Search,Fabu
 }

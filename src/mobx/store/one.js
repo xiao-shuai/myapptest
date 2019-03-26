@@ -7,8 +7,8 @@ class OneStore {
   @observable tx;
   @observable mine_bg;
   constructor() {
-    this.text = "美食家"; 
-    this.qm="每个吃货都是有签名的介绍下自己吧";
+    this.text = "Mr.Han"; 
+    this.qm="Every foodie is an autographed introduction";
     this.tx="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553497401814&di=401257d82747bb1b70bd5547a890c38a&imgtype=0&src=http%3A%2F%2Fpic1.16pic.com%2F00%2F26%2F06%2F16pic_2606097_b.jpg";
     this.mine_bg="../../img/mine_bg.jpeg";
    

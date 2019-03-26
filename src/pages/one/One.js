@@ -13,8 +13,12 @@ import { Button,Divider } from 'react-native-elements'
 @observer // 监听当前组件
 
 class One extends  Component{
+    static navigationOptions = {
+        tabBarLabel: 'Home',
+      };
  constructor(props){
     super(props);
+    
     this.state = {
         isshow:true,
         ms:'这是描述描述没什么没事没事',
@@ -68,16 +72,16 @@ class One extends  Component{
             <View style={ys.big} >
             <View style={ys.top}>
             <TouchableOpacity onPress={()=>{
-
+             this.props.navigation.navigate('Fabu')
             }}>
             <Ionicons name={'ios-add'} size={30}/>
             </TouchableOpacity>
               <TouchableOpacity onPress={()=>{
-              this.props.navigation.navigate('Detail')
+              this.props.navigation.navigate('Search')
               }} style={ys.top_find} >
                
                    <Ionicons name={'ios-search'} size={20} style={{marginLeft:'5%'}}/>
-                   <Text style={{marginLeft:'5%',color:'#A9A9A9',}}>请输入搜索内容</Text>
+                   <Text style={{marginLeft:'5%',color:'#A9A9A9',}}>Please enter content</Text>
    
              </TouchableOpacity>
              <TouchableOpacity onPress={()=>{
@@ -99,20 +103,17 @@ class One extends  Component{
               /> 
               <View style={ys.zj_tab}>
                <View style={[ys.zj_tab_con]}>
-                   <Ionicons name={'ios-alarm'} size={25} />
-                   <Text>精良厨具</Text>
+                   <Ionicons name={'ios-paper'} size={25} style={{color:Metrics.themehui2}}/>
+                   <Text style={{color:Metrics.themehui2}}>Best</Text>
+               </View>
+               
+               <View style={[ys.zj_tab_con]}>
+                   <Ionicons name={'ios-ribbon'} size={25} style={{color:Metrics.themehui2}}/>
+                   <Text style={{color:Metrics.themehui2}}>Culinary</Text>
                </View>
                <View style={[ys.zj_tab_con]}>
-                   <Ionicons name={'ios-gift'} size={25}/>
-                   <Text>发现新菜</Text>
-               </View>
-               <View style={[ys.zj_tab_con]}>
-                   <Ionicons name={'ios-bookmark'} size={25}/>
-                   <Text>厨艺宝典</Text>
-               </View>
-               <View style={[ys.zj_tab_con]}>
-                   <Ionicons name={'ios-book'} size={25}/>
-                   <Text>菜谱分类</Text>
+                   <Ionicons name={'ios-book'} size={25} style={{color:Metrics.themehui2}}/>
+                   <Text style={{color:Metrics.themehui2}}>Menu</Text>
                </View>
               </View>
             {/*每日新菜  */}
@@ -123,10 +124,10 @@ class One extends  Component{
              borderColor:Metrics.themehui3,
              }}>
                <View style={{flexDirection:'row',justifyContent:'space-between',padding:5,alignItems:'center'}}>
-                <Text style={{fontSize:16}}>每日新菜</Text>
+                <Text style={{fontSize:16}}>Daily new dish</Text>
                 <View style={{flexDirection:'row',justifyContent:'space-between'}}>
                     <Text style={{color:Metrics.themehui2,marginRight:5,marginTop:2}}>
-                        查看全部
+                    Look at all
                     </Text>
                     <Ionicons name={'ios-arrow-forward'} size={18} color={Metrics.themehui2}/>
                 </View>
@@ -157,9 +158,9 @@ class One extends  Component{
               <View>
                  <View style={{flexDirection:'row',justifyContent:'center',alignItems:'center',
                  marginTop:5,}}>
-                     <Divider style={{width:Metrics.CW*.2,backgroundColor:'#DAA520'}}/>
-                     <Text style={{padding:10}}>热门专区</Text>
-                     <Divider style={{width:Metrics.CW*.2,backgroundColor:'#DAA520'}}/>
+                     <Divider style={{width:Metrics.CW*.2,backgroundColor:Metrics.themehui2}}/>
+                     <Text style={{padding:10}}>Hot zone</Text>
+                     <Divider style={{width:Metrics.CW*.2,backgroundColor:Metrics.themehui2}}/>
                  </View>
                     {/*  */}
                  <View style={{width:Metrics.CW*.95,marginLeft:'2.5%',}}  >

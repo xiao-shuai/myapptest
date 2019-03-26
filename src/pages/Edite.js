@@ -1,5 +1,7 @@
 import React, {Component} from 'react'
-import {View,Text,TouchableOpacity,Image,ScrollView,StyleSheet,TextInput} from 'react-native'
+import {View,Text,TouchableOpacity,
+  Image,ScrollView,StyleSheet,
+  TextInput,ActivityIndicator} from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {inject,observer} from 'mobx-react'
 import {observable} from 'mobx'
@@ -16,7 +18,7 @@ class Edite extends Component {
     constructor(props){
   super(props)
   this.state={
-     
+     isshow:true
   }
   this.option={
     title: '选择图片',
@@ -57,10 +59,23 @@ class Edite extends Component {
       }
 
    componentWillMount(){
-
+    fetch('http://rap2api.taobao.org/app/mock/163155/gaoshilist').then(res=>{
+      return res.json()
+    } ).then(res=>{
+      this.setState({isshow:false})
+    }).catch(err=>{
+      console.log('err--!',err)
+    })
    } 
 
     render(){
+      if(this.state.isshow){
+        return (
+         <View style={{justifyContent: 'center',height:Metrics.CH*.8}}>
+         <ActivityIndicator size="large" color={Metrics.themeColor} />
+         </View>
+        )
+      }
         return(
         <SafeAreaView style={{flex:1,}}>
         <ScrollView>
@@ -70,12 +85,12 @@ class Edite extends Component {
           }}>
           <View style={[ys.option,]}>
           
-          <Text style={{fontSize:18}}>头像</Text>
+          <Text style={{fontSize:18}}>Head portrait</Text>
          <Image source={{uri:this.props.oneStore.tx}}
          style={{width:Metrics.CW*.12,
             height:Metrics.CW*.12,
             borderRadius:Metrics.CW*.06,
-            marginLeft:Metrics.CW*.6
+            marginLeft:Metrics.CW*.4
          }}/>
          <Ionicons name={'ios-arrow-forward'} size={20} 
          style={{marginLeft:Metrics.CW*.06}}/>  
@@ -86,14 +101,14 @@ class Edite extends Component {
           <TouchableOpacity onPress={()=>{
 
           }} style={[ys.option,]}>
-             <Text style={{fontSize:18}}>昵称 </Text>
+             <Text style={{fontSize:18}}>nickname </Text>
              <View style={{
                  width:Metrics.CW*.4,
-             marginLeft:Metrics.CW*.4}}>
+             marginLeft:Metrics.CW*.35}}>
                  <TextInput onChangeText={(nc)=>{
                       this.setState({nc})
                  }}  defaultValue={this.props.oneStore.text}  
-                 style={{height:Metrics.CW*.1,padding:10,textAlign:'center',marginLeft:Metrics.CW*.1}}/>
+                 style={{height:Metrics.CW*.1,padding:10,textAlign:'center',marginLeft:Metrics.CW*.05}}/>
              </View>
           </TouchableOpacity>
           <Divider style={{height:2}}/>
@@ -101,19 +116,20 @@ class Edite extends Component {
            <TouchableOpacity onPress={()=>{
 
 }} style={[ys.option,]}>
-   <Text style={{fontSize:18}}>签名 </Text>
+   <Text style={{fontSize:18}}>The signature </Text>
    <View style={{
        width:Metrics.CW*.7,
-   marginLeft:Metrics.CW*.1,
-//    backgroundColor:'red',
+  //  marginLeft:Metrics.CW*.06,
+  //  backgroundColor:'red',
    justifyContent:'flex-end',
+  
    
 
    }}>
        <TextInput onChangeText={(qm)=>{
             this.setState({qm})
-       }}  defaultValue={this.props.oneStore.qm}  
-       style={{height:Metrics.CW*.1,padding:10,textAlign:"right",}}/>
+       }}  defaultValue={this.props.oneStore.qm}   multiline={true}
+       style={{height:Metrics.CW*.15,padding:10,}}/>
    </View>
 </TouchableOpacity>
 <Divider style={{height:2,}}/>
@@ -121,15 +137,15 @@ class Edite extends Component {
 <TouchableOpacity onPress={()=>{
     console.log("nc----!",this.state.nc)
    if(this.state.nc==undefined&&this.state.qm==undefined){
-        return  this.refs.toast.show('请输入修改的信息')
+        return  this.refs.toast.show('Please enter the modified information')
    }else if(this.state.nc==undefined&&this.state.qm!==undefined){
-         this.refs.toast.show('修改签名成功')
+         this.refs.toast.show('Signature modified successfully')
        return  this.props.oneStore.change_qm(this.state.qm)
    } else if(this.state.nc!==undefined&&this.state.qm==undefined){
-        this.refs.toast.show('修改昵称成功')
+        this.refs.toast.show('Modify nickname successfully')
        return   this.props.oneStore.change_name(this.state.nc)
    }else if(this.state.nc!==undefined&&this.state.qm!==undefined){
-    this.refs.toast.show('修改成功')
+    this.refs.toast.show('Modify the success')
         this.props.oneStore.change_name(this.state.nc) 
         this.props.oneStore.change_qm(this.state.qm)
        
@@ -143,7 +159,6 @@ class Edite extends Component {
  <Toast ref="toast" style={{backgroundColor:Metrics.themehui2}} 
  position='top' 
  opacity={0.5}
- 
  />
         </SafeAreaView>
         )

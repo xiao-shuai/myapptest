@@ -8,6 +8,9 @@ import {inject,observer} from 'mobx-react'
 @inject(["oneStore"])
 @observer // 监听当前组件
 class Four extends  Component{
+  static navigationOptions = {
+    tabBarLabel: 'Me',
+  };
    constructor(props){
       super(props)
       this.state={
@@ -16,39 +19,39 @@ class Four extends  Component{
    this.some_option=[
        {
         icon:'ios-list-box',
-        text:'作品',  
+        text:'works',  
        },
        {
         icon:'ios-pricetags',
-        text:'关注',  
+        text:'Focus on',  
        },
        {
         icon:'ios-people',
-        text:'粉丝',  
+        text:'fans',  
        },
    ]
   this.some_option2=[
       {
           icon:'ios-notifications',
-          text:'我的消息',
+          text:'My news',
           iconr:'ios-arrow-forward',
           tiao:'Notice'
       },
       {
         icon:'ios-star-outline',
-        text:'我的收藏',
+        text:'My collection',
         iconr:'ios-arrow-forward',
         tiao:''
     },
     {
         icon:'ios-heart-empty',
-          text:'我的喜欢',
+          text:'I like',
           iconr:'ios-arrow-forward',
           tiao:''
     },
     {
         icon:'ios-mail',
-          text:'联系我们',
+          text:'Contact us',
           iconr:'ios-arrow-forward',
          tiao:'Lianxi'
     },
@@ -84,7 +87,7 @@ class Four extends  Component{
                
               <View  style={{height:Metrics.CH*.15,}}>
                <TouchableOpacity onPress={()=>{
-
+                this.props.navigation.navigate('Edite')
                }}>
               <Image source={{uri:this.props.oneStore.tx}} 
             style={{width:Metrics.CW*.2,height:Metrics.CW*.2,borderRadius:Metrics.CW*.1}}/>
@@ -101,7 +104,7 @@ class Four extends  Component{
             <TouchableOpacity style={ys.bj} onPress={()=>{
                 this.props.navigation.navigate('Edite')
             }}>
-            <Text style={{fontSize:16,letterSpacing:3,color:'white',}}>编辑</Text>
+            <Text style={{fontSize:16,letterSpacing:3,color:'white',}}>editor</Text>
             </TouchableOpacity>
             </View>
             

@@ -10,6 +10,9 @@ import ScrollableTabView, {DefaultTabBar,ScrollableTabBar,} from 'react-native-s
 @inject(["oneStore"])
 @observer
 class Two extends  Component{
+    static navigationOptions = {
+        tabBarLabel: 'Delicious',
+      };
     constructor(props){
         super(props)
        this.state={
