@@ -8,7 +8,7 @@ import {
 
 import {One,Two,Three,Four,Login,Register,
   Sign,Detail,Notice,NoticeSys,Edite,Lianxi,
-  Search,Fabu,Forgot, Start,Detail2,Feedback
+  Search,Fabu,Forgot, Start,Detail2,Feedback,Like
 } from '../pages/all'
 import {Metrics} from './styleconfig'
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -144,7 +144,19 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
     Feedback:{
       screen:Feedback,
       navigationOptions:({
-       
+        title:'Feedback',
+      })
+    },
+    Start:{
+      screen:Start,
+      navigationOptions:({
+        title:'Collection',
+      })
+    },
+    Like:{
+      screen:Like,
+      navigationOptions:({
+        title:'Like',
       })
     },
 

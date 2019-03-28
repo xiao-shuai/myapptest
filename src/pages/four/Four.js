@@ -25,12 +25,12 @@ class Four extends  Component{
        {
         icon:'ios-star-outline',
         text:'My collection',  
-        tz:''
+        tz:'Start'
        },
        {
         icon:'ios-heart-empty',
         text:'I like',  
-        tz:''
+        tz:'Like'
        },
    ]
   this.some_option2=[

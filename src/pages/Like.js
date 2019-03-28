@@ -10,31 +10,30 @@ import { Divider,}  from 'react-native-elements'
 import Toast, {DURATION} from 'react-native-easy-toast'
 import {Metrics} from '../config/styleconfig'
 
-class Start extends Component{
+class Like extends Component{
    constructor(props){
        super(props)
        this.state={
-           isshow:true
-       }
-    
+        isshow:true
+    }
    }
     
 componentWillMount(){
     fetch('http://food.blitz.work:10040/v1/cookbooks/cores/').then(res=>{
-            return res.json()
-     }
+        return res.json()
+ }
+ 
+ )
+ .then(res=>{
+     console.log("shuju conlection",res.results)
+     this.setState({
+         isshow:false,
+         data:res.results
+        })
      
-     )
-     .then(res=>{
-         console.log("shuju conlection",res.results)
-         this.setState({
-             isshow:false,
-             data:res.results
-            })
-         
-     }).catch(err=>{
-         console.log("err",err)
-     })
+ }).catch(err=>{
+     console.log("err",err)
+ })
 }
 
    render(){
@@ -47,9 +46,9 @@ componentWillMount(){
       }
        return(
        <SafeAreaView style={{flex:1,alignItems:'center'}}>
-    <ScrollView contentContainerStyle={{width:Metrics.CW*.9,}}>
+            <ScrollView contentContainerStyle={{width:Metrics.CW*.9,}}>
       {
-          this.state.data.slice(6,11).map((item,index)=>{
+          this.state.data.slice(2,5).map((item,index)=>{
                  return(
                          <TouchableOpacity onPress={()=>{
                    this.props.navigation.navigate('Detail2',{info:item})
@@ -72,8 +71,9 @@ componentWillMount(){
       }
 
     </ScrollView>
+
        </SafeAreaView>
        )
    }
 }
-export default Start
+export default Like

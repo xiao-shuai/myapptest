@@ -21,33 +21,6 @@ class Two extends  Component{
            isshow:true
        },
        this.store=this.props.oneStore
-
-       this.testdata=[
-           {
-           img:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553357908937&di=ef21d64f79e9b0b7055275fe6f21cfe0&imgtype=0&src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fac4bd11373f08202da2ec52645fbfbedab641b6e.jpg',
-           title:'这是说'
-           },
-           {
-            img:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553357908937&di=ef21d64f79e9b0b7055275fe6f21cfe0&imgtype=0&src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fac4bd11373f08202da2ec52645fbfbedab641b6e.jpg',
-            title:'这是说明1'
-            },
-            {
-                img:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553357908937&di=ef21d64f79e9b0b7055275fe6f21cfe0&imgtype=0&src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fac4bd11373f08202da2ec52645fbfbedab641b6e.jpg',
-                title:'这是说明222'
-                },
-                {
-                    img:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553357908937&di=ef21d64f79e9b0b7055275fe6f21cfe0&imgtype=0&src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fac4bd11373f08202da2ec52645fbfbedab641b6e.jpg',
-                    title:'这是说明333333'
-                    },
-                    {
-                        img:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553357908937&di=ef21d64f79e9b0b7055275fe6f21cfe0&imgtype=0&src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fac4bd11373f08202da2ec52645fbfbedab641b6e.jpg',
-                        title:'这是说明'
-                        },
-                        {
-                            img:'https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1553357908937&di=ef21d64f79e9b0b7055275fe6f21cfe0&imgtype=0&src=http%3A%2F%2Fa.hiphotos.baidu.com%2Fimage%2Fpic%2Fitem%2Fac4bd11373f08202da2ec52645fbfbedab641b6e.jpg',
-                            title:'这是说明'
-                            },
-       ]
     }
     componentWillMount(){
         fetch('http://food.blitz.work:10040/v1/recommendeds/').then(res=>{

@@ -23,10 +23,7 @@ class One extends  Component{
         isshow:true,
         data:[],
         ms:'这是描述描述没什么没事没事',
-        data2:[
-        "http://h.hiphotos.baidu.com/image/pic/item/58ee3d6d55fbb2fbbc6b4796424a20a44723dcf6.jpg",
-        "http://a.hiphotos.baidu.com/image/pic/item/728da9773912b31b38b68ca38b18367adbb4e166.jpg",
-        "https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547396620181&di=3ce36cbdd2b6b6a13f7ee2f21ba8b06f&imgtype=0&src=http%3A%2F%2Fimage.xcar.com.cn%2Fattachments%2Fa%2Fday_140319%2F2014031916_1bd6ffb9d5553620f870beYW9d0Nxj0n.jpg"]
+       
     };
 
     
