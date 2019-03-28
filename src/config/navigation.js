@@ -1,19 +1,24 @@
 import React from 'react';
-import { createBottomTabNavigator, createAppContainer,createStackNavigator } from 'react-navigation';
+import { 
+  createBottomTabNavigator, 
+  createAppContainer,
+  createStackNavigator,
+  createSwitchNavigator 
+} from 'react-navigation';
 
 import {One,Two,Three,Four,Login,Register,
   Sign,Detail,Notice,NoticeSys,Edite,Lianxi,
-  Search,Fabu
+  Search,Fabu,Forgot, Start,Detail2,Feedback
 } from '../pages/all'
 import {Metrics} from './styleconfig'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
 
-const BottomTab = createBottomTabNavigator({
+  export const BottomTab = createBottomTabNavigator({
     one: One,
     two: Two,
-    // three:Three,
+    // three:Login,
     four:Four,
   },
   {  initialRouteName: 'one',
@@ -45,6 +50,7 @@ const BottomTab = createBottomTabNavigator({
   }
   );
 
+
   const AllStack= createStackNavigator({
     One:{
      screen:BottomTab,
@@ -71,15 +77,28 @@ const BottomTab = createBottomTabNavigator({
     },
     Three:{screen:Three},
     Four:{screen:Four},
-    Login:{screen:Login},
+    Login:{screen:Login,
+      navigationOptions:({
+        header:null,
+        headerBackTitle:null,
+      })
+    },
     Register:{screen:Register},
     Sign:{screen:Sign},
-    Detail:{screen:Detail},
+    Detail:{screen:Detail,navigationOptions:({
+      title:'Details',
+      headerBackTitle:null,
+    })},
+    Detail2:{screen:Detail2,
+      navigationOptions:({
+        title:'Details',
+        headerBackTitle:null,
+      })},
     Notice:{
       screen:Notice,
      
       navigationOptions:({
-        title:'我的消息',
+        title:'My news',
         headerBackTitle:null,
       })
     },
@@ -87,33 +106,45 @@ const BottomTab = createBottomTabNavigator({
       screen:NoticeSys,
      
       navigationOptions:({
-        title:'消息详情',
+        title:'Message details',
       })
     },
     Edite:{
       screen:Edite,
      
       navigationOptions:({
-        title:'个人设置',
+        title:'Personal Settings',
       })
     },
     Lianxi:{
       screen:Lianxi,
      
       navigationOptions:({
-        title:'联系我们',
+        title:'Contact us',
       })
     },
     Search:{
       screen:Search,
       navigationOptions:({
-        title:'搜索',
+        title:'Search',
       })
     },
     Fabu:{
       screen:Fabu,
       navigationOptions:({
-        title:' 发布',
+        title:'Release',
+      })
+    },
+    Forgot:{
+      screen:Forgot,
+      navigationOptions:({
+       
+      })
+    },
+    Feedback:{
+      screen:Feedback,
+      navigationOptions:({
+       
       })
     },
 

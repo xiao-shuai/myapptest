@@ -11,6 +11,7 @@ import {Platform, StyleSheet, Text, View} from 'react-native';
 import AllStack from './src/config/navigation'
 import {Provider} from 'mobx-react'
 import store from './src/mobx/store'
+
 export default class App extends Component {
   render() {
     console.disableYellowBox = true;

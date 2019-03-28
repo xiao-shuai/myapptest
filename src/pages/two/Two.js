@@ -7,6 +7,8 @@ import {inject,observer} from 'mobx-react'
 import { observable } from 'mobx';
 import {Metrics} from '../../config/styleconfig'
 import ScrollableTabView, {DefaultTabBar,ScrollableTabBar,} from 'react-native-scrollable-tab-view'
+import { Button,Divider } from 'react-native-elements'
+
 @inject(["oneStore"])
 @observer
 class Two extends  Component{
@@ -16,7 +18,7 @@ class Two extends  Component{
     constructor(props){
         super(props)
        this.state={
-           isshow:false
+           isshow:true
        },
        this.store=this.props.oneStore
 
@@ -47,7 +49,27 @@ class Two extends  Component{
                             },
        ]
     }
+    componentWillMount(){
+        fetch('http://food.blitz.work:10040/v1/recommendeds/').then(res=>{
+            return res.json()
+     }
+     
+     )
+     .then(res=>{
+         console.log("two---!",res.results)
+         this.setState({
+             isshow:false,
+             data:res.results[0],
+             data2:res.results[1],
+             data3:res.results[2]
+            })
+         
+     }).catch(err=>{
+         console.log("err",err)
+     })
+    }
     render(){
+        console.log('2222--',this.state.data)
         return(
             <SafeAreaView style={{flex:1}}>
           {
@@ -68,43 +90,50 @@ tabBarTextStyle={{fontSize:18}}
                 <ScrollView tabLabel='Food' contentContainerStyle ={ys.big_s}>
 
                 {
-                    this.testdata.map((item,index)=>{
+                    this.state.data.cookbooks.map((item,index)=>{
            return(
-           <View style={ys.s_item} key={index}>
-         <Image source={{uri:item.img}} 
-         style={{width:Metrics.CW*.22,
-         height:Metrics.CW*.22,borderRadius:Metrics.CW*.11
-         }}/>
+               <TouchableOpacity style={ys.s_item} key={index} onPress={()=>{
+                   this.props.navigation.navigate('Detail2',{info:item})
+                   }}>
+          
+         <Image source={{uri:item.cover}} 
+         style={ys.img}/>
 
-         <Text style={{fontSize:16,color:Metrics.themehui2,marginTop:6}}>{
-             item.title.length>3?
-             item.title.substring(0,4)+'...'
+         <Text style={ys.tex}>
+             {
+             item.description.length>3?
+             item.description.substring(0,20)+'...'
              :
-             item.title}</Text>
+             item.description
+             }
+         </Text>
         
-           </View>
-           )
-                        })
+           
+           </TouchableOpacity>
+           )})
                 }
+              
 					</ScrollView>
+                    {/* 2222 */}
  
 					<ScrollView tabLabel='Health' contentContainerStyle={ys.big_s}>
                     {
-                    this.testdata.map((item,index)=>{
+                    this.state.data2.cookbooks.map((item,index)=>{
            return(
-           <View style={ys.s_item} key={index}>
-         <Image source={{uri:item.img}} 
-         style={{width:Metrics.CW*.22,
-         height:Metrics.CW*.22,borderRadius:Metrics.CW*.11
-         }}/>
+             <TouchableOpacity style={ys.s_item} key={index} onPress={()=>{
+                this.props.navigation.navigate('Detail2',{info:item})
+                }}>
+           
+         <Image source={{uri:item.cover}} 
+         style={ys.img}/>
 
-         <Text style={{fontSize:16,color:Metrics.themehui2,marginTop:6}}>{
-             item.title.length>3?
-             item.title.substring(0,4)+'...'
+         <Text style={ys.tex}>{
+             item.description.length>3?
+             item.description.substring(0,20)+'...'
              :
-             item.title}</Text>
-        
-           </View>
+             item.description}
+             </Text>
+           </TouchableOpacity>
            )
                         })
                 }
@@ -112,21 +141,21 @@ tabBarTextStyle={{fontSize:18}}
  
 					<ScrollView tabLabel='Couple' contentContainerStyle={ys.big_s}>
                     {
-                    this.testdata.map((item,index)=>{
+                    this.state.data3.cookbooks.map((item,index)=>{
            return(
-           <View style={ys.s_item} key={index}>
-         <Image source={{uri:item.img}} 
-         style={{width:Metrics.CW*.22,
-         height:Metrics.CW*.22,borderRadius:Metrics.CW*.11
-         }}/>
+               <TouchableOpacity style={ys.s_item} key={index} onPress={()=>{
+                this.props.navigation.navigate('Detail2',{info:item})
+                }}>
+           
+         <Image source={{uri:item.cover}} 
+         style={ys.img}/>
 
-         <Text style={{fontSize:16,color:Metrics.themehui2,marginTop:6}}>{
-             item.title.length>3?
-             item.title.substring(0,4)+'...'
+         <Text style={ys.tex}>{
+             item.description.length>3?
+             item.description.substring(0,20)+'...'
              :
-             item.title}</Text>
-        
-           </View>
+             item.description}</Text>
+           </TouchableOpacity>
            )
                         })
                 }
@@ -134,7 +163,6 @@ tabBarTextStyle={{fontSize:18}}
 
 </ScrollableTabView>
 
-       
 
           }
                
@@ -144,14 +172,26 @@ tabBarTextStyle={{fontSize:18}}
     }
 }
 const ys=StyleSheet.create({
+    tex:{
+        fontSize:25,
+        color:'white',
+        marginTop:"-30%"
+    },
+    img:{
+        width:'100%',
+        height:'100%',
+        borderRadius:8
+    },
     big_s:{
-        flexDirection:"row",
-        justifyContent:'space-around',
-        flexWrap:'wrap'
+        // flexDirection:"row",
+        // justifyContent:'space-around',
+        // flexWrap:'wrap'
+        alignItems:'center'
     },
     s_item:{
-        width:Metrics.CW*.22,
-        height:Metrics.CW*.3,
+        // backgroundColor:'red',
+        width:Metrics.CW*.95,
+        height:Metrics.CH*.26,
       marginTop:20,
       alignItems:'center',
     },

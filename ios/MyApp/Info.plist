@@ -38,11 +38,9 @@
 		</dict>
 	</dict>
 	<key>NSCameraUsageDescription</key>
-	<string>APP需要访问你的相机来上传图片</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>Uploading an avatar or recipe requires access to your camera</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>APP需要访问相册来上传图片</string>
+	<string>Uploading an avatar or recipe requires access to your photo album</string>
 	<key>UIAppFonts</key>
 	<array>
 		<string>AntDesign.ttf</string>

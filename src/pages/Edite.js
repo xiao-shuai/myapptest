@@ -4,7 +4,7 @@ import {View,Text,TouchableOpacity,
   TextInput,ActivityIndicator} from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {inject,observer} from 'mobx-react'
-import {observable} from 'mobx'
+
 import { SafeAreaView } from 'react-navigation';
 import Carousel from 'react-native-snap-carousel';
 import {Metrics} from '../config/styleconfig'
@@ -21,10 +21,10 @@ class Edite extends Component {
      isshow:true
   }
   this.option={
-    title: '选择图片',
-    cancelButtonTitle: '取消',
-    takePhotoButtonTitle:'拍照',
-    chooseFromLibraryButtonTitle:'图库',
+    title: 'Choose picture',
+    cancelButtonTitle: 'cancel',
+    takePhotoButtonTitle:'Taking pictures',
+    chooseFromLibraryButtonTitle:'gallery',
     allowsEditing:true,
     quality: 0.8,
     noData: false,
@@ -108,7 +108,7 @@ class Edite extends Component {
                  <TextInput onChangeText={(nc)=>{
                       this.setState({nc})
                  }}  defaultValue={this.props.oneStore.text}  
-                 style={{height:Metrics.CW*.1,padding:10,textAlign:'center',marginLeft:Metrics.CW*.05}}/>
+                 style={{height:Metrics.CW*.1,padding:10,textAlign:'center',marginLeft:Metrics.CW*.05,color:Metrics.themehui2}}/>
              </View>
           </TouchableOpacity>
           <Divider style={{height:2}}/>
@@ -129,7 +129,7 @@ class Edite extends Component {
        <TextInput onChangeText={(qm)=>{
             this.setState({qm})
        }}  defaultValue={this.props.oneStore.qm}   multiline={true}
-       style={{height:Metrics.CW*.15,padding:10,}}/>
+       style={{height:Metrics.CW*.15,padding:10,color:Metrics.themehui2}}/>
    </View>
 </TouchableOpacity>
 <Divider style={{height:2,}}/>
@@ -152,7 +152,7 @@ class Edite extends Component {
    }
    
 }} style={ys.btn}>
-    <Text style={{color:'white',fontSize:18}}>保存</Text>
+    <Text style={{color:'white',fontSize:18}}>Save</Text>
 </TouchableOpacity>
 
 </ScrollView>

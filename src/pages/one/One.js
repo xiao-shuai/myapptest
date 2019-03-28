@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View,Text,TouchableOpacity,Image
+import {View,Text,TouchableOpacity,Image,AsyncStorage
     ,ScrollView,StyleSheet,ActivityIndicator} from 'react-native'
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import {inject,observer} from 'mobx-react'
@@ -33,10 +33,21 @@ class One extends  Component{
  }
    
  componentWillMount(){
+    AsyncStorage.getItem('islogin').then(res=>{
+        console.log('res_login---one?',res)
+        if(res===null){
+            this.props.navigation.navigate('Login')
+        }
+    }      
+    ).catch(err=>{
+     console.log('res_login---?',err)
+    }     
+    )
+
      fetch('http://food.blitz.work:10040/v1/cookbooks/cores/').then(res=>{
             return res.json()
      }
- 
+     
      )
      .then(res=>{
          console.log("shuju",res.results)
@@ -48,34 +59,10 @@ class One extends  Component{
      }).catch(err=>{
          console.log("err",err)
      })
+   
+     
  }
- 
- 
-//  _renderItem ({item, index,props}) {
-        
-//      return (
-//          <TouchableOpacity style={{width:"100%",height:200}} onPress={()=>{
-//            this.props.navigation.navigate('Detail')  
-//         //    navigaion.navigate('Search')
-          
-//          }}>
-//         <Image source={{uri:item.cover}} style={{width:'100%',height:'100%'}}></Image>
-       
-//         </TouchableOpacity>
-//     );
-// }
-_renderItem=(props)=>{
-    return (
-        <TouchableOpacity style={{width:"100%",height:200}} onPress={()=>{
-         
-       //    navigaion.navigate('Search')
-         
-        }}>
-       <Image source={{uri:item.cover}} style={{width:'100%',height:'100%'}}></Image>
-      
-       </TouchableOpacity>
-   );
-}
+  
 
     render(){
         console.log('this.state.data---!',this.state.data)
@@ -132,7 +119,7 @@ _renderItem=(props)=>{
               autoplay={true}
               
               /> 
-              <View style={ys.zj_tab}>
+              {/* <View style={ys.zj_tab}>
                <View style={[ys.zj_tab_con]}>
                    <Ionicons name={'ios-paper'} size={25} style={{color:Metrics.themehui2}}/>
                    <Text style={{color:Metrics.themehui2}}>Best</Text>
@@ -146,7 +133,7 @@ _renderItem=(props)=>{
                    <Ionicons name={'ios-book'} size={25} style={{color:Metrics.themehui2}}/>
                    <Text style={{color:Metrics.themehui2}}>Menu</Text>
                </View>
-              </View>
+              </View> */}
             {/*每日新菜  */}
               <View style={{width:Metrics.CW*.95,
               marginLeft:'2.5%',
@@ -157,24 +144,24 @@ _renderItem=(props)=>{
                <View style={{flexDirection:'row',justifyContent:'space-between',padding:5,alignItems:'center'}}>
                 <Text style={{fontSize:16}}>Daily new dish</Text>
                 <View style={{flexDirection:'row',justifyContent:'space-between'}}>
-                    <Text style={{color:Metrics.themehui2,marginRight:5,marginTop:2}}>
+                    {/* <Text style={{color:Metrics.themehui2,marginRight:5,marginTop:2}}>
                     Look at all
                     </Text>
-                    <Ionicons name={'ios-arrow-forward'} size={18} color={Metrics.themehui2}/>
+                    <Ionicons name={'ios-arrow-forward'} size={18} color={Metrics.themehui2}/> */}
                 </View>
                </View>
  
  {/* content */}
               <ScrollView style={{width:'100%'}} horizontal={true}>
                   {
-                      this.state.data2.map((item,index)=>{
+                      this.state.data.reverse().slice(5,12).map((item,index)=>{
                           return(
                               <TouchableOpacity onPress={()=>{
-
+                            this.props.navigation.navigate("Detail2",{info:item})
                               }} style={{}} key={index}>
                               <View style={{width:Metrics.CW*.35,margin:10}}>
-                              <Image source={{uri:item}} style={{width:'100%',height:100}}></Image>
-                              <Text style={{marginTop:5,letterSpacing:1,marginBottom:3,}}>{this.state.ms.length>10?this.state.ms.substr(0,10)+'...':this.state.ms}</Text>
+                              <Image source={{uri:item.cover}} style={{width:'100%',height:100}}></Image>
+                              <Text style={{marginTop:5,letterSpacing:1,marginBottom:3,}}>{item.name.length>10?item.name.substr(0,10)+'...':item.name}</Text>
                               </View>
                             
                              </TouchableOpacity>
@@ -196,23 +183,32 @@ _renderItem=(props)=>{
                     {/*  */}
                  <View style={{width:Metrics.CW*.95,marginLeft:'2.5%',}}  >
                     {
-                        this.state.data2.map((item,index)=>{
+                        this.state.data.reverse().slice(3,14).map((item,index)=>{
                   return(
-                      <View style={{width:'100%',marginTop:10,
-                      borderRadius:8,
-                      borderColor:Metrics.themehui3,
-                      borderWidth:1,
-                      }} key={index}  >
-                          <Text style={{fontSize:15,padding:8}}>这是标题</Text>
-                          <Image source={{uri:item}} style={{width:'100%',height:200}}/>
-                          <Text style={{fontSize:15,padding:8}}>这是底部内容</Text>
-                      </View>
+                      <TouchableOpacity 
+                      style={ys.hot} key={index}  onPress={()=>{
+                          this.props.navigation.navigate('Detail2',{info:item})
+                      }}>
+                      
+                          <Text style={{fontSize:15,padding:8}}>{item.name}</Text>
+                          <Image source={{uri:item.cover}} style={{width:'100%',height:200}}/>
+                          <Text style={{fontSize:15,padding:8}}>{
+                              item.description.length>10?
+                              item.description.substr(0,50)+'..'
+                              :
+                              item.description
+                            }</Text>
+                     
+                      </TouchableOpacity>
                   )
                     })
 
                     }
                  </View>
               </View>
+              {/* line botm */}
+       <Divider style={{backgroundColor:Metrics.themehui3,height:1,marginTop:15}} />
+       <Text style={{color:Metrics.themehui3,textAlign:'center',marginTop:8}}>The bottom</Text>
             
               </ScrollView>
 
@@ -224,6 +220,13 @@ _renderItem=(props)=>{
     }
 }
 const ys=StyleSheet.create({
+    hot:{
+        width:'100%',
+        marginTop:10,
+        borderRadius:8,
+        borderColor:Metrics.themehui3,
+        borderWidth:1,
+    },
  big:{
     width:"100%",height:"100%",
     },

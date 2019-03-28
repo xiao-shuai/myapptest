@@ -1,29 +1,36 @@
 import React, {Component} from 'react'
-import {View,Text,ScrollView,TextInput,ImageBackground,StyleSheet,TouchableOpacity} from 'react-native'
+import {View,Text,ScrollView,TextInput,ImageBackground,StyleSheet,TouchableOpacity,ActivityIndicator} from 'react-native'
 import { SafeAreaView } from 'react-navigation';
 import {inject,observer} from 'mobx-react'
 import {observable} from 'mobx'
 import { Divider,}  from 'react-native-elements'
 import { Metrics } from '../../config/styleconfig';
 import Toast, {DURATION} from 'react-native-easy-toast'
-class Register extends  Component{
-    constructor(props){
-        super(props)
-        this.state={
-         isshow:true
-        }
-    }
-    componentWillMount(){
-        fetch('http://rap2api.taobao.org/app/mock/163155/gaoshilist').then(res=>{
-            return res.json()
-          } ).then(res=>{
-            this.setState({isshow:false})
-          }).catch(err=>{
-            console.log('err--!',err)
-          })
-    }
+class Forgot extends  Component{
+   constructor(props){
+       super(props)
+       this.state={
+        isshow:true
+       }
+   }
 
+  componentWillMount(){
+    fetch('http://rap2api.taobao.org/app/mock/163155/gaoshilist').then(res=>{
+        return res.json()
+      } ).then(res=>{
+        this.setState({isshow:false})
+      }).catch(err=>{
+        console.log('err--!',err)
+      })
+  }  
     render(){
+        if(this.state.isshow){
+            return (
+             <View style={{justifyContent: 'center',height:Metrics.CH*.8}}>
+             <ActivityIndicator size="large" color={Metrics.themeColor} />
+             </View>
+            )
+          }
         return(
             <SafeAreaView style={{flex:1}}>
                 <ImageBackground source={require('../../img/login_bg.png')} 
@@ -33,20 +40,20 @@ class Register extends  Component{
                  <Text style={ys.label_t}>Account</Text>
                  <TextInput style={[ys.t_input]} onChangeText={()=>{
 
-                 }} placeholder="Account no less than 6 characters" />
-                 <Text style={[ys.label_t,{marginTop:10,}]}>Password</Text>
+                 }} placeholder="Please enter your account number"/>
+                 <Text style={[ys.label_t,{marginTop:10,}]}>Email address</Text>
                  <TextInput style={[ys.t_input]} onChangeText={()=>{
 
-                 }} placeholder="Password no less than 6 characters" />
-               <Text style={[ys.label_t,{marginTop:10,}]}>Confirm password</Text>
+                 }} placeholder="Please enter your email address"/>
+               <Text style={[ys.label_t,{marginTop:10,}]}>Contact phone number</Text>
                  <TextInput style={[ys.t_input]} onChangeText={()=>{
 
-                 }} placeholder="Password no less than 6 characters"/>
+                 }} placeholder="Please enter your contact number"/>
                  {/* btn */}
                  <TouchableOpacity style={[ys.t_input,ys.zc]} onPress={()=>{
                     this.refs.toast.show("Please enter the correct information")
                  }}>
-                     <Text style={{color:'white',fontSize:20}}>Registered</Text>
+                     <Text style={{color:'white',fontSize:20}}>Submit</Text>
                  </TouchableOpacity>
                  
                  </View>
@@ -77,4 +84,4 @@ const ys=StyleSheet.create({
         fontSize:20,fontWeight:'600',color:'white'
     }
 })
-export default Register
+export default Forgot

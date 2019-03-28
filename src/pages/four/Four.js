@@ -1,5 +1,5 @@
 import React, {Component} from 'react'
-import {View,Text,StyleSheet,ScrollView,Image,TouchableOpacity,ImageBackground} from 'react-native'
+import {View,Text,StyleSheet,ScrollView,Image, AsyncStorage,TouchableOpacity,ImageBackground} from 'react-native'
 import { SafeAreaView } from 'react-navigation';
 import {Metrics} from '../../config/styleconfig'
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -18,16 +18,19 @@ class Four extends  Component{
       }
    this.some_option=[
        {
-        icon:'ios-list-box',
-        text:'works',  
+        icon:'ios-images',
+        text:'release',  
+        tz:'Fabu'
        },
        {
-        icon:'ios-pricetags',
-        text:'Focus on',  
+        icon:'ios-star-outline',
+        text:'My collection',  
+        tz:''
        },
        {
-        icon:'ios-people',
-        text:'fans',  
+        icon:'ios-heart-empty',
+        text:'I like',  
+        tz:''
        },
    ]
   this.some_option2=[
@@ -38,16 +41,10 @@ class Four extends  Component{
           tiao:'Notice'
       },
       {
-        icon:'ios-star-outline',
-        text:'My collection',
+        icon:'ios-paper',
+        text:'Feedback',
         iconr:'ios-arrow-forward',
-        tiao:''
-    },
-    {
-        icon:'ios-heart-empty',
-          text:'I like',
-          iconr:'ios-arrow-forward',
-          tiao:''
+        tiao:'Feedback'
     },
     {
         icon:'ios-mail',
@@ -58,15 +55,31 @@ class Four extends  Component{
   ]  
     
    }
+ logout=()=>{
  
+  fetch('http://food.blitz.work:10040/v1/cookbooks/reviews/').then(res=>{
+    return res.json()
+}
+
+)
+.then(res=>{
+ console.log("remove islogin")
+ AsyncStorage.removeItem('islogin')
+ this.props.navigation.navigate('Login')
+}).catch(err=>{
+ console.log("err",err)
+})
+ }
+
     render(){
         
         return(
             <SafeAreaView style={{flex:1}}>
              <ScrollView style={{}}>
               <View style={{alignItems:'center'}}>
-              <Text style={{fontSize:20,fontWeight:'500',color:Metrics.th}}>我的</Text>
+              <Text style={{fontSize:20,fontWeight:'500',color:Metrics.th}}>Me</Text>
               </View> 
+              
               <ImageBackground style={{width:Metrics.CW,marginTop:5,
                 height:Metrics.CH*.3,}} source={require('../../img/mine_bg.jpeg')} >
             <View style={{
@@ -74,8 +87,7 @@ class Four extends  Component{
                 height:Metrics.CH*.25,
                 alignItems:'center',
                 justifyContent:'center',
-                // marginTop:Metrics.CH*.05
-                
+              
                 }}>
                
                 <View style={{
@@ -85,7 +97,7 @@ class Four extends  Component{
                     alignItems:'center'
                    }}>
                
-              <View  style={{height:Metrics.CH*.15,}}>
+              <View  style={{height:Metrics.CH*.15,alignItems:'center',justifyContent:'space-between'}}>
                <TouchableOpacity onPress={()=>{
                 this.props.navigation.navigate('Edite')
                }}>
@@ -118,7 +130,7 @@ class Four extends  Component{
                 this.some_option.map((item,index)=>{
                 return(
                     <TouchableOpacity onPress={()=>{
-
+                      this.props.navigation.navigate(item.tz)
                     }} style={{alignItems:'center'}} key={index}>
                     
                <Ionicons name={item.icon} size={30}  color={Metrics.themehui2}/>
@@ -133,11 +145,7 @@ class Four extends  Component{
             <Divider  style={{backgroundColor:Metrics.themehui3,height:5,marginTop:15}}/>
            
             {/* 下 列表 */}
-            <View style={{
-                width:Metrics.CW*.95,
-                marginLeft:'2.5%',
-                marginTop:20
-                }}>
+            <View style={ys.out}>
                 {
                     this.some_option2.map((item,index)=>{
              return(
@@ -159,8 +167,17 @@ class Four extends  Component{
              )
                     })
                 }
-
             </View>
+            {/* xian */}
+            <Divider  style={{backgroundColor:Metrics.themehui3,height:15,marginTop:10}}/>
+            {/* log out */}
+            <TouchableOpacity style={[ys.out,ys.out2]} onPress={()=>{
+              this.logout()
+            }}>
+              <Text style={{fontSize:20,color:'white',fontWeight:'600'}}>
+             Log out 
+              </Text>
+            </TouchableOpacity>
             </ScrollView>
             </SafeAreaView>
         )
@@ -168,6 +185,18 @@ class Four extends  Component{
 }
 export default Four
 const ys=StyleSheet.create({
+  out2:{
+    marginTop:10,
+    backgroundColor:Metrics.themeColor,
+    height:Metrics.CH*.05,
+    marginBottom:20,borderRadius:10,
+    alignItems:'center',justifyContent:'center'
+  },
+  out:{
+    width:Metrics.CW*.95,
+     marginLeft:'2.5%',
+ marginTop:20
+  },
   left_qd:{
     width:'25%',
     alignItems:'center',
