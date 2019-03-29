@@ -17,11 +17,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.0</string>
+	<string>1.0.4</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>4</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSAppTransportSecurity</key>
@@ -39,8 +39,10 @@
 	</dict>
 	<key>NSCameraUsageDescription</key>
 	<string>Uploading an avatar or recipe requires access to your camera</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>In order to recommend delicious food to you, please allow the app to access location permission</string>
 	<key>NSLocationWhenInUseUsageDescription</key>
-	<string></string>
+	<string>In order to recommend delicious food to you, please allow the app to access location permission</string>
 	<key>NSPhotoLibraryUsageDescription</key>
 	<string>Uploading an avatar or recipe requires access to your photo album</string>
 	<key>UIAppFonts</key>
