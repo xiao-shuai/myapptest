@@ -17,9 +17,11 @@ import Forgot from '../pages/login/Forgot'
 import Start from './Start'
 import Feedback from './Feedback'
 import Like from './Like'
+import Find from './Find'
+import Findxq from './Findxq'
 export  {
     One,Two,Three,Four,Login,Register,Sign,
     Detail,Notice,NoticeSys,Edite,Lianxi,
     Search,Fabu,Forgot,Start,Detail2,Feedback,
-    Like
+    Like,Find,Findxq
 }

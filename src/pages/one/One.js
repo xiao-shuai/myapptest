@@ -14,7 +14,7 @@ import { Button,Divider } from 'react-native-elements'
 
 class One extends  Component{
     static navigationOptions = {
-        tabBarLabel: 'Home',
+        tabBarLabel: 'Find',
       };
  constructor(props){
     super(props);
@@ -30,16 +30,7 @@ class One extends  Component{
  }
    
  componentWillMount(){
-    AsyncStorage.getItem('islogin').then(res=>{
-        console.log('res_login---one?',res)
-        if(res===null){
-            this.props.navigation.navigate('Login')
-        }
-    }      
-    ).catch(err=>{
-     console.log('res_login---?',err)
-    }     
-    )
+  
 
      fetch('http://food.blitz.work:10040/v1/cookbooks/cores/').then(res=>{
             return res.json()
@@ -73,28 +64,30 @@ class One extends  Component{
                     :
                
             <View style={ys.big} >
+            <View style={{backgroundColor:Metrics.themeColor,padding:6}}>
             <View style={ys.top}>
             <TouchableOpacity onPress={()=>{
              this.props.navigation.navigate('Fabu')
             }}>
-            <Ionicons name={'ios-add'} size={30}/>
+            <Ionicons name={'ios-add'} size={30} color={'white'}/>
             </TouchableOpacity>
               <TouchableOpacity onPress={()=>{
               this.props.navigation.navigate('Search')
               }} style={ys.top_find} >
                
-                   <Ionicons name={'ios-search'} size={20} style={{marginLeft:'5%'}}/>
-                   <Text style={{marginLeft:'5%',color:'#A9A9A9',}}>Please enter content</Text>
+                   <Ionicons name={'ios-search'} size={20} style={{marginLeft:'5%',color:'white'}}/>
+                   <Text style={{marginLeft:'5%',color:'white',}}>Please enter content</Text>
    
              </TouchableOpacity>
              <TouchableOpacity onPress={()=>{
               this.props.navigation.navigate('Notice')
              }}>
-             <Ionicons name={'ios-notifications-outline'} size={25} />
+             <Ionicons name={'ios-notifications-outline'} size={25} color={'white'}/>
              </TouchableOpacity>
             
             </View>
-            <ScrollView style={{flex:1,}}>
+            </View>
+            <ScrollView style={{flex:1,marginTop:10}}>
            <Carousel layout={'default'} 
            data={this.state.data} 
            navigation={this.props.navigation} 
@@ -235,7 +228,7 @@ const ys=StyleSheet.create({
 top_find:{
     display:"flex",width:'80%',alignItems:"center",
     justifyContent:"center",flexDirection:'row',height:'80%',
-    borderRadius:15,borderColor:'#808080',borderWidth:1,borderStyle:'solid'
+    borderRadius:15,borderColor:'white',borderWidth:1,borderStyle:'solid'
   },
   zj_tab:{
     width:Metrics.CW*.9,marginLeft:'5%',

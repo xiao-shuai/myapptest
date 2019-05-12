@@ -4,7 +4,7 @@
       "extent" : "full-screen",
       "idiom" : "iphone",
       "subtype" : "2688h",
-      "filename" : "cccc.png",
+      "filename" : "kkkkk.png",
       "minimum-system-version" : "12.0",
       "orientation" : "portrait",
       "scale" : "3x"
@@ -12,17 +12,8 @@
     {
       "extent" : "full-screen",
       "idiom" : "iphone",
-      "subtype" : "2688h",
-      "filename" : "max.png",
-      "minimum-system-version" : "12.0",
-      "orientation" : "landscape",
-      "scale" : "3x"
-    },
-    {
-      "extent" : "full-screen",
-      "idiom" : "iphone",
       "subtype" : "1792h",
-      "filename" : "dddd.png",
+      "filename" : "dfdfdf.png",
       "minimum-system-version" : "12.0",
       "orientation" : "portrait",
       "scale" : "2x"
@@ -30,17 +21,8 @@
     {
       "extent" : "full-screen",
       "idiom" : "iphone",
-      "subtype" : "1792h",
-      "filename" : "xrrr.png",
-      "minimum-system-version" : "12.0",
-      "orientation" : "landscape",
-      "scale" : "2x"
-    },
-    {
-      "extent" : "full-screen",
-      "idiom" : "iphone",
       "subtype" : "2436h",
-      "filename" : "appicon.png",
+      "filename" : "appicon-1.png",
       "minimum-system-version" : "11.0",
       "orientation" : "portrait",
       "scale" : "3x"
@@ -48,35 +30,17 @@
     {
       "extent" : "full-screen",
       "idiom" : "iphone",
-      "subtype" : "2436h",
-      "filename" : "yyyy.png",
-      "minimum-system-version" : "11.0",
-      "orientation" : "landscape",
-      "scale" : "3x"
-    },
-    {
-      "extent" : "full-screen",
-      "idiom" : "iphone",
       "subtype" : "736h",
-      "filename" : "appicon-2.png",
+      "filename" : "appicon-5.png",
       "minimum-system-version" : "8.0",
       "orientation" : "portrait",
-      "scale" : "3x"
-    },
-    {
-      "extent" : "full-screen",
-      "idiom" : "iphone",
-      "subtype" : "736h",
-      "filename" : "appicon-4.png",
-      "minimum-system-version" : "8.0",
-      "orientation" : "landscape",
       "scale" : "3x"
     },
     {
       "extent" : "full-screen",
       "idiom" : "iphone",
       "subtype" : "667h",
-      "filename" : "appicon-3.png",
+      "filename" : "appicon-10.png",
       "minimum-system-version" : "8.0",
       "orientation" : "portrait",
       "scale" : "2x"
@@ -84,7 +48,7 @@
     {
       "orientation" : "portrait",
       "idiom" : "iphone",
-      "filename" : "appicon-5.png",
+      "filename" : "appicon-11.png",
       "extent" : "full-screen",
       "minimum-system-version" : "7.0",
       "scale" : "2x"

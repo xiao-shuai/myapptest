@@ -1,11 +1,16 @@
 import React, {Component} from 'react'
-import {View,Text,ScrollView,TextInput,ImageBackground,StyleSheet,TouchableOpacity,ActivityIndicator} from 'react-native'
+import {View,Text,ScrollView,
+    TextInput,ImageBackground,StyleSheet,
+    TouchableOpacity,ActivityIndicator,
+    Image
+} from 'react-native'
 import { SafeAreaView } from 'react-navigation';
 import {inject,observer} from 'mobx-react'
 import {observable} from 'mobx'
 import { Divider,}  from 'react-native-elements'
 import { Metrics } from '../../config/styleconfig';
 import Toast, {DURATION} from 'react-native-easy-toast'
+import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
 class Forgot extends  Component{
    constructor(props){
        super(props)
@@ -33,19 +38,34 @@ class Forgot extends  Component{
           }
         return(
             <SafeAreaView style={{flex:1}}>
-                <ImageBackground source={require('../../img/login_bg.png')} 
-                style={ys.imgbg} resizeMode="stretch">
-                <ScrollView>
-                    <View style={{marginTop:Metrics.CH*.1}}>
-                 <Text style={ys.label_t}>Account</Text>
+                
+               <KeyboardAwareScrollView contentContainerStyle={{alignItems:'center'}}>
+                
+                <Image source={require('../../img/logbg.jpg')} style={{
+                        width:Metrics.CW,
+                        height:Metrics.CH*.3,
+                        resizeMode:"cover"
+                    }}/>
+                    <View style={{
+                                                marginTop:-Metrics.CH*.15,
+                                                width:Metrics.CW*.95,
+                                                backgroundColor:'white',
+                                                padding:10,
+                                                shadowOpacity:.8,
+                                                shadowColor:Metrics.themeColor,
+                                                shadowRadius:5,
+                                                shadowOffset:{width:3,height:5},
+                                                borderRadius:5
+                        }}>
+                 {/* <Text style={ys.label_t}>Account</Text> */}
                  <TextInput style={[ys.t_input]} onChangeText={()=>{
 
                  }} placeholder="Please enter your account number"/>
-                 <Text style={[ys.label_t,{marginTop:10,}]}>Email address</Text>
+                 {/* <Text style={[ys.label_t,{marginTop:10,}]}>Email address</Text> */}
                  <TextInput style={[ys.t_input]} onChangeText={()=>{
 
                  }} placeholder="Please enter your email address"/>
-               <Text style={[ys.label_t,{marginTop:10,}]}>Contact phone number</Text>
+               {/* <Text style={[ys.label_t,{marginTop:10,}]}>Contact phone number</Text> */}
                  <TextInput style={[ys.t_input]} onChangeText={()=>{
 
                  }} placeholder="Please enter your contact number"/>
@@ -57,13 +77,13 @@ class Forgot extends  Component{
                  </TouchableOpacity>
                  
                  </View>
-                </ScrollView>
-                
-                </ImageBackground>
+               
+                 </KeyboardAwareScrollView>
+               
                 <Toast ref="toast" style={{backgroundColor:Metrics.themehui2}} 
- position='top' 
- opacity={0.5}
- />
+                  position='top' 
+                  opacity={0.5}
+                />
             </SafeAreaView>
         )
     }

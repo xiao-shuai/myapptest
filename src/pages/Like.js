@@ -9,7 +9,7 @@ import {observable} from 'mobx'
 import { Divider,}  from 'react-native-elements'
 import Toast, {DURATION} from 'react-native-easy-toast'
 import {Metrics} from '../config/styleconfig'
-
+import LinearGradient from 'react-native-linear-gradient';
 class Like extends Component{
    constructor(props){
        super(props)
@@ -46,16 +46,21 @@ componentWillMount(){
       }
        return(
        <SafeAreaView style={{flex:1,alignItems:'center'}}>
-            <ScrollView contentContainerStyle={{width:Metrics.CW*.9,}}>
+            <ScrollView contentContainerStyle={{width:Metrics.CW*.9,}} showsVerticalScrollIndicator={false}>
       {
           this.state.data.slice(2,5).map((item,index)=>{
                  return(
+                     <LinearGradient colors={['#c2e59c','#64b3f4']} style={{marginTop:10,borderRadius:8,padding:6}}>
                          <TouchableOpacity onPress={()=>{
                    this.props.navigation.navigate('Detail2',{info:item})
-                         }} style={{backgroundColor:Metrics.themehui3,marginTop:10,borderRadius:10}}>
+                         }} style={{
+                            //  backgroundColor:Metrics.themehui3,
+                             marginTop:10,borderRadius:10,marginBottom:20}}>
                          <View  style={{flexDirection:'row',alignItems:'center'}}>
                              <Image source={{uri:item.user.avatar}} style={{width:Metrics.CW*.16,height:Metrics.CW*.16,borderRadius:Metrics.CW*.08,marginTop:10}}/>
-                             <Text style={{fontSize:20,color:Metrics.themehui2,marginLeft:"10%"}}>{
+                             <Text style={{fontSize:20,
+                             color:'white',
+                             marginLeft:"10%"}}>{
                                  item.description.length>20?
                                  item.description.substr(0,20)+'..'
                                  :
@@ -65,6 +70,7 @@ componentWillMount(){
                          <Image source={{uri:item.cover}} style={{width:'100%',height:Metrics.CH*.3,marginTop:15,borderRadius:8,marginBottom:10}}/>   
 
                          </TouchableOpacity>
+                         </LinearGradient>
 
                  )
           })

@@ -8,7 +8,8 @@ import {
 
 import {One,Two,Three,Four,Login,Register,
   Sign,Detail,Notice,NoticeSys,Edite,Lianxi,
-  Search,Fabu,Forgot, Start,Detail2,Feedback,Like
+  Search,Fabu,Forgot, Start,Detail2,Feedback,
+  Like,Find,Findxq
 } from '../pages/all'
 import {Metrics} from './styleconfig'
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -16,22 +17,23 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
 
 
   export const BottomTab = createBottomTabNavigator({
+   
+    find:Find,
     one: One,
     two: Two,
-    // three:Login,
     four:Four,
   },
-  {  initialRouteName: 'one',
+  {  initialRouteName: 'find',
     defaultNavigationOptions: ({ navigation }) => ({
         tabBarIcon: ({ focused, horizontal, tintColor }) => {
           const { routeName } = navigation.state;
           let iconName;
           if (routeName === 'one') {
-            iconName ='ios-home';
+            iconName ='ios-list-box';
           } else if (routeName === 'two') {
             iconName = 'ios-bookmarks';
-          }else if(routeName==='three'){
-           iconName='ios-contacts'
+          }else if(routeName==='find'){
+           iconName='ios-home'
           }else{
               iconName='ios-person'
           }
@@ -157,6 +159,18 @@ import Ionicons from 'react-native-vector-icons/Ionicons';
       screen:Like,
       navigationOptions:({
         title:'Like',
+      })
+    },
+    Find:{
+      screen:Find,
+      navigationOptions:({
+        // title:'Like',
+      })
+    },
+    Findxq:{
+      screen:Findxq,
+      navigationOptions:({
+        title:'details',
       })
     },
 

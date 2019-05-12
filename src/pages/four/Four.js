@@ -76,9 +76,9 @@ class Four extends  Component{
         return(
             <SafeAreaView style={{flex:1}}>
              <ScrollView style={{}}>
-              <View style={{alignItems:'center'}}>
+              {/* <View style={{alignItems:'center'}}>
               <Text style={{fontSize:20,fontWeight:'500',color:Metrics.th}}>Me</Text>
-              </View> 
+              </View>  */}
               
               <ImageBackground style={{width:Metrics.CW,marginTop:5,
                 height:Metrics.CH*.3,}} source={require('../../img/mine_bg.jpeg')} >
